@@ -1,6 +1,6 @@
 # Emascript.js
-Emascript is library created especaly for big data , it is so young 
-with emascript help you also to make ajax request easyily like jquery also for your client secruity seek we build some function that help you to secure you website ... 
+Emascript is library created especaly for big data , it is so young ,
+ emascript help you also to make ajax request easyily like jquery also and for your client secruity, we build some function that help you to secure your website ... 
 it is not totaly documented .
 
 there are the function from emascript library:
