@@ -5,7 +5,7 @@ with emascript help you also to make ajax request easyily like jquery also for y
 
 there are the function from emascript library:
 
-# Addiction()
+# addiction()
 This function return the total of addiction from an array
 ....
 Ex.:
@@ -15,5 +15,13 @@ console.log(n.addiction());
 
 output:
 // 14
+  # multiplication()
+  this function return the total of value of multiplication from an arry 
   
+  ex.: n = [1, 4, 5 ];
+  
+  console.log(n.multiplication());
+  
+  output:
+  // 20;
 
