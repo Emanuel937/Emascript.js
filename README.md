@@ -25,3 +25,21 @@ output:
   output:
   // 20;
 
+# division()
+ This function return the value of division from an array 
+ 
+ ex.:
+ var n = [1, 5, 2];
+console.log(n.division());
+
+output:
+//0.1
+
+# subtraction()
+this function return the total value of substration from an array
+ ex.:
+ var n = [1, 5, 2];
+console.log(n.substration());
+
+output:
+//0.1
