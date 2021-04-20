@@ -511,30 +511,25 @@ Array.prototype.addiction = function () {
   }
   
 
+ Object.prototype.required = function(){
+  this.onsubmit = function(){
+     let el ;
+     for(this.index  = 0; this.index <= this.childElementCount -1 ; this.index++)
+     {   // get the form children >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+         el = this[this.index];
+         if( el.tagName == "INPUT" || el.tagName == "TEXTAREA" || 
+             el.tagName == "SELECT") 
+         {
+          // don't allow user to submit a empty input >>>>>>>>>>
+            el.value == false ? el.value = "" :el.value = el.value;
+            el.value == "" ? el.required = true: el.required = true;
+         }
+      }  
+      return false;  
+    }   
+  }
 
-  /***** required **** */
-  Object.prototype.required = function(notRequiredClassName){
-    this.onsubmit = function(e){
-                let return_r = null
-                this.index, this.return_, this.isRequired, this.input_value;
-                for(this.index  = 0; this.index <= this.length -1 ; this.index++){
-                    this.tag = this.children[this.index];
-                    if(this[this.index].tagName == "INPUT" || this[this.index].tagName == "SELECT" ||  this[this.index].tagName == "TEXTAREA"){
-                        this.isRequired = this[this.index].required;
-                        this.input_value = this[this.index].value  ;
-                        if(this.isRequired == false ||this.input_value == false &&  this.tag.className.indexOf(notRequiredClassName) < 0){
-                            this[this.index].required = true;
-                            return_r = false;
-                        }else{
-                           return_r = true;
-                        }
-                    }
-                }  
-                return return_r;     
-       }
-    }
-    
-    /**** removePrevent() ********/
+/**** removePrevent() ********/
     Object.prototype.removePrevent = function(){
         this.onsubmit = function(){
             return true;
