@@ -214,253 +214,7 @@ Array.prototype.addiction = function () {
     }
   }
   
-  
-  /**  Emascript version 2  ajax , valueoOrText , requiredSecurity**/
-  
-         /******************************     ****************************************
-                     *****************  Emascript ajax            *******************
-                                      javascript library 
-                                  Created by Emanuel Abizimi 
-           *******************************      **************************************/ 
-      Object.prototype.runAjax = function(time = null, interval = null, callBack = null){
-          let action, method, data, result, to_do, closer, cleaner,callback;
-          action = this.config.action;
-          method = this.config.method;
-          closer = 0;
-          data = this.config.data;
-          callback = 0;
-          // processing animation
-          function proccessing(){
-              let link, nodeId, img_url, key, tag, proc;
-              link =  this.ajax.proccessing.link;
-              nodeId = "#"+this.ajax.proccessing.nodeId;
-              img_url = {
-                  first:"http://emascript.stockcode.site/img/first.gif",
-                  secod:"http://emascript.stockcode.site/img/second.gif",
-                  third:"http://emascript.stockcode.site/img/third.gif",
-              }
-              tag = document.querySelector(nodeId);
-              // for loop for animation git image
-              for( key in img_url){
-                  if(link != key){
-                     tag.src = link;       
-                  }
-                  if(link == key){
-                     if(!tag.tagName == "IMG"){
-                        proc = "This tag name must be img";
-                     }else{
-                        stag.src=img_url[key];
-                     }
-                  }
-              }
-           }
-          function ajax_js(typed, url, info = null){
-                  let http =  new XMLHttpRequest();
-                  let response, status_code,
-                   status_text, minut,
-                   data_http =""; // request data
-                  http.onreadystatechange = function(){
-                      if(this.readyState >= 1 && this.readyState < 4 ){
-                          // call the processing function 
-                          //proccessing();
-                          response = false;
-                      }
-                      if(this.status != 200 && this.readyState != 4){
-                          status_code = this.status;
-                          response = false;
-                      }
-                      else if( this.status == 200 && this.readyState == 4 ){
-                          // stop the processing 
-                          //and send the data to sucess function ...
-                          response = this.responseText;
-                          response = response == false? false : response; 
-                          status_code = 200;
-                      }
-                  }
-                  if(typed == "post" || typed == "POST" && status_code == 200 ){
-                      // post method
-                      minut = 0;
-                      data_http ="";
-                      for(let key in info){
-                          if(key != 'runAjax'){
-                              minut++;
-                              
-                              data_http +="&"+key+'='+info[key];
-  
-                          }
-                          if(minut == 0){
-                            data_http = " ";
-                          }
-                      }
-                      http.open(typed, url, false);
-                      http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                      http.send(data_http);
-                  }
-                  if(typed =="get" || typed == "GET" && status_code == 200){
-                      minut = 0;
-                      for(let key in info){
-                          if(key != 'runAjax'){
-                              minut++;
-                              if(minut == 1){
-                                data_http += "?"+key+"="+info[key];
-                              }
-                              if(minut > 1){
-                                data_http += "&"+key+"="+info[key];
-                              }
-                          }
-                      }
-                      if(minut == 0){
-                          data_http =" ";
-                      }
-                      http.open(typed, url + data_http, false );
-                      http.send();
-                  }
-                  // ....... open the file ....... Emascript .........................
-                  /*****************       status text   ***************************/
-                  switch(status_code){
-                     case 200:
-                     status_text =" The page was found";
-                     break;
-                     case 404:
-                     status_text ="The page was not foud";
-                     break;
-                     case 403:
-                     status_text = "You don't have permission to load this file , change this file permission"
-                     break;
-                     default:
-                     console.error(status_code);
-                 }
-                  return {
-                      response:response,
-                      error:status_code,
-                      status_text:status_text
-                  }
-             }
-           /*******************************  Emascript *****************************************/
-          const  setMethodActionData = function(){
-               // call the ajax_js function :::::::::
-               let success_arg, error_arg, status_text_arg, ajax_f;
-                     ajax_f = ajax_js(method, action, data);
-                      success_arg = ajax_f.response;
-                      // error arg ...
-                     
-                      error_arg =  ajax_f.error;
-                      // status_text ;
-                     status_text_arg = ajax_f.status_text;
-                      // toDo function .........
-                      return this.ajax.toDo(success_arg, error_arg, status_text_arg);
-          }
-          const setup = function(){
-              if(action == undefined || action == " "){
-                  result = "please set the action value ajax = { action: mypage.html}";
-                  console.error(result);
-              }else if(method == undefined || method == " "){
-                  result ="please set the method value eg.: ajax = { method: post/get}";
-                  console.error(result);
-              }else if(!action == false  && !method == false){
-              // make the ajax request ......
-              if(time == null && interval == null){
-                  if(this.ajax){
-                      result = setMethodActionData();
-                      const parms = ()=>{
-                          callBack !== null ? callBack(arg = []): null;
-                      }       
-                      setTimeout(parms, 1000);
-                  }else{
-                      result = "name your  object 'ajax'  eg.: ajax = { } ";
-                      console.error(result);
-                  }
-              }else{
-                  if(time == Infinity && interval == null || time == Infinity && interval == 1000){
-                      // setInterval ....
-                      function to_do(){
-                          setMethodActionData(); 
-                          callBack !== null ? callBack(arg = []): null;
-                      }
-                      setInterval(to_do, 1000);              
-                    }else if(time == Infinity  && interval > 1000 || time == Infinity && interval == 1000 ){
-                       // setInterval ....
-                       function to_do(){
-                          setMethodActionData();
-                          callBack !== null ? callBack(arg = []): null;
-                      }
-                      setInterval(to_do, interval);
-                    }else if(typeof time == "number" && time != 0 && time > -1 ){
-                        let inter = null;
-                        if(interval == null || interval == 1000){
-                            inter =  1000;
-                        }else if(interval > 1000){
-                          inter = interval;
-                        }
-                        // interval 
-                        // setInterval ....
-                       function to_do(){
-                          closer++;
-                          setMethodActionData()
-                          if(closer == time){
-                              // clear interval ...
-                              clearInterval(cleaner);
-                              // callback
-                              callBack !== null ? callBack(arg = []): null
-                          }
-                      }
-                     cleaner = setInterval(to_do, inter);
-                    }else{
-                        result = "time musst be > 0, check the first arg of runAjax function if is > 0"
-                        console.error(result);
-                    }
-                  }
-              }
-          }
-          
-          setup();
-          
-      }
-      
-      
-      /* user example .......
-          
-          ajax = {
-              config:{
-                action:"test.php",
-                method:"post",
-                data:{
-                    name:"Emanuel Abizimi",
-                    age:"secret"
-                  }  // is optional 
-              },
-            
-              proccessing:{link:"branham.php", nodeId:"case"}, // is optionnal 
-              toDo:(data, status_code, status_text)=>  {
-                 
-              }
-          }
-          
-          ajax.runAjax(time, interval, callback);
-          
-          the callback function has an array arg ...
-      */
-      
-      /****** **************** end ajax   ************************* *********/
-      
-      /*********         Emascript form security   By Emanuel Abizimi   ****************/
-  
-      
-  /*
-      user example 
-      var form = document.querySelector('form');
-      form.required(); // this required function can receive class name as parament to avoid for  set required to element that has this class name .....
-  
-  */
-  // the end of required security ......
-  
-  
-  /* ********************   value or text of the html element *****************
-  
-                       Emacript by Emanuel Abizimi 
-                            javascript library
-  
-  *************************************--------************************************/
+
   
   const valueOrText = (cssSelector, index=null)=>{
       let get_el, array_text = [], response, pos, tags, tags_status;
@@ -511,29 +265,110 @@ Array.prototype.addiction = function () {
   }
   
 
- Object.prototype.required = function(){
-  this.onsubmit = function(){
-     let el ;
-     for(this.index  = 0; this.index <= this.childElementCount -1 ; this.index++)
-     {   // get the form children >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-         el = this[this.index];
-         if( el.tagName == "INPUT" || el.tagName == "TEXTAREA" || 
-             el.tagName == "SELECT") 
-         {
-          // don't allow user to submit a empty input >>>>>>>>>>
-            el.value == false ? el.value = "" :el.value = el.value;
-            el.value == "" ? el.required = true: el.required = true;
-         }
-      }  
-      return false;  
-    }   
-  }
+// required function  .... and ajax request
 
-/**** removePrevent() ********/
-    Object.prototype.removePrevent = function(){
-        this.onsubmit = function(){
-            return true;
+
+Object.prototype.sendRequest = function(interval = 1000, repeat = 1, callBack){
+    let url       =  this.url,
+        data      =  this.data,
+        type      =  this.type,
+        objstKeys =  null,
+        thisObj   =  this,
+        setInt    =  1,
+        setIntervalFn = null,
+        xmlHttp   =  new XMLHttpRequest();   
+        // data function 
+        function setData(){
+          let response  = '';
+          if(data){
+        // convert data to object 
+            objstKeys = Object.keys(data);
+            for(let i = 0; i < objstKeys.length ; i++){
+        // send value for get method
+              response +=objstKeys[i] +"="+data[objstKeys[i]] + "&";
+            }
+            type == "get"? response ="?"+response : response = response;
+            return response;
+          }else{
+            return "";
+          }
         }
-    }
+        // get method
+        function getMethod(){
+           let setUrl = url + setData();
+           xmlHttp.open(type,setUrl);
+           xmlHttp.send();
+
     
+        }
+        // post method
+        function postMethod(){
+            let setUrl = setData();
+            xmlHttp.open(type, url);
+            xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttp.send(setUrl);
+        }
+        // initilize the request
+        setIntervalFn = setInterval(() => {
+            thisObj.url == undefined ?console.error("You must set the url key and value for ajax request"):
+            true;
+
+            xmlHttp.onreadystatechange = function(){
+                if(this.readyState == 4  && this.status == 200){
+                // send the data to 
+                    thisObj.find == undefined ?true:
+                    thisObj.find(xmlHttp.responseText);
+                // for stop interval 
+                setInt++;
+                //call back function 
+                callBack(this);
+                }else if(this.status < 4 ){
+                    thisObj.processing == undefined ?true:
+                    thisObj.processing(this.status);
+                 
+                }else if(this.status != 200 ){
+                    thisObj.fail == undefined ?true:
+                    thisObj.fail(this.status, this.readyState);
+                }
+              
+            }
+            type == undefined ? type = "get": type = type;
+            type.toLowerCase() == "get" ? getMethod():postMethod();
+
+            // stop interval or clean it 
+            if(setInt == repeat){
+                clearInterval(setIntervalFn);
+            }
+         }, interval);
+}
+
+// require function 
+var psxesodopdohpaeoi = null;
+Object.prototype.required = function(){
+    var el ;
+    this.checkor = function(){
+        for(this.index  = 0; this.index <= this.childElementCount -1 ; this.index++)
+        {   // get the form children >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            el = this[this.index];
+            if( el.tagName == "INPUT" || el.tagName == "TEXTAREA" || 
+                el.tagName == "SELECT") 
+            {
+          
+             // don't allow user to submit a empty input >>>>>>>>>>
+               el.value == false ? el.value = "" :el.value = el.value;
+               el.value == "" ? el.required = true: el.required = true;
+                // if the user send the value , and the input has true required
+                psxesodopdohpaeoi =  el.required ==true && el.value !="" ? 1:null;
+             
+            }
+         }
+    }
+    this.onsubmit = function(e){
+       e.preventDefault();
+            this.checkor();
+      }
+      this.checkor();
+      return psxesodopdohpaeoi;
+}
+
     
