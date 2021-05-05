@@ -48,8 +48,25 @@ output:
 This function return the mean of number sequence of numbers 
 ex.:  
         
-        var d =  [0, 5, 1];
-        console.log(d.mean());
+        var n =  [0, 5, 1];
+        console.log(n.mean());
         
         output:
         //2
+        
+ #center()
+
+This function return the center  of number sequence , it don't have a center number then return 0 
+ex.:  
+        
+        var n =  [0, 5, 1];
+        console.log(n.mean());
+        
+        output:
+        //5
+        
+        var n_0 =  [0, 2];
+        console.log(n_0.center());
+        
+        //output
+        0
