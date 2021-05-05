@@ -54,7 +54,7 @@ ex.:
         output:
         //2
         
- #center()
+ # center()
 
 This function return the center  of number sequence , it don't have a center number then return 0 
 ex.:  
