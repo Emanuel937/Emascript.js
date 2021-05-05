@@ -45,7 +45,7 @@ output:
 
 # mean()
 
-This function return the mean of number sequence of numbers 
+This function return the mean of number sequence . 
 ex.:  
         
         var n =  [0, 5, 1];
