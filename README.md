@@ -8,13 +8,12 @@ there are the function from emascript library:
 # addiction()
 This function return the total of addiction from an array
 ....
-Ex.:
+ex.:
 var n = [0, 5, 9];
-
 console.log(n.addiction());
-
 output:
 // 14
+
   # multiplication()
   this function return the total of value of multiplication from an arry 
   
