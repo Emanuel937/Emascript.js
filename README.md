@@ -43,3 +43,11 @@ console.log(n.substration());
 
 output:
 //0.1
+
+# mean()
+This function return the mean of number sequence of numbers 
+ex.:    var d =  [0, 5, 1];
+        console.log(d.mean());
+        
+        output:
+        2
